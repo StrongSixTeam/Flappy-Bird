@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour
     {
         TryGetComponent(out player_R);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pipe"))
+        {
+            Die();
+        }
+    }
     private void Update()
     {
         //마우스 버튼으로 위쪽 방향 힘 주기
@@ -30,5 +37,10 @@ public class PlayerController : MonoBehaviour
         {
             transform.Rotate(new Vector3(-50f * Time.deltaTime, 0, 0));
         }
+    }
+    private void Die()
+    {
+        Time.timeScale = 0;
+        //Gameover, Restart UI 작성
     }
 }
